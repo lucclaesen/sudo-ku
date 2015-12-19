@@ -1,0 +1,80 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.jumbotron {
+    /* add bootstrap jumbotron background image */
+    background: url("Images/banner-1033932__180.jpg");
+    background-size: contain;
+    /* change bootstrap jumbotron text color */
+    color: #FFF;
+}
+
+
+/* Sudoku game board styling. Courtesy of http://stackoverflow.com/questions/23497444/how-to-make-a-sudoku-grid-using-html-and-css
+for the block dileneation, */
+
+.sudo-grid {
+    border: 5px solid #666;
+    margin-left: auto; /*auto margins on both sides for block elements centers it in the container component*/
+    margin-right: auto;
+    margin-top: 10%;
+}
+
+    .sudo-grid td {
+        margin: 0;
+    }
+
+    .sudo-grid input {
+        width: 40px;
+        height: 40px;
+        text-align: center;
+        font-size: 20px;
+        padding: 0;
+        border: 1px #ccc solid;
+        background: transparent;
+    }
+
+    /*Draws the thick vertical lines separating blocks*/
+    .sudo-grid td:nth-child(3) input,
+    .sudo-grid td:nth-child(6) input {
+        border-right: solid;
+    }
+
+    /*Draws the thick horizontal lines separating blocks*/
+    .sudo-grid tr:nth-child(3) input,
+    .sudo-grid tr:nth-child(6) input {
+        border-bottom: solid;
+    }
+
+.sudo-grid input.valid {
+    background-color : forestgreen;
+}
+
+.sudo-grid input.invalid {
+    background-color : darkred;
+}
+
+/* Centers the button and gives it a decent distance from the grid.*/
+div.btn-new-game {
+    margin: 10px auto;
+    display: table;
+}

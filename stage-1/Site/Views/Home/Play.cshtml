@@ -1,0 +1,48 @@
+﻿@model byte[,]
+
+@{
+    ViewBag.Title = "Play";
+}
+
+@section Scripts
+{
+    <script src="~/Scripts/app/play.js"></script>
+}
+
+<h2>sudo play ...</h2>
+
+<div class="row">
+    <div class="col-sm-10 col-sm-offset-1">
+        <table class="sudo-grid" data-validateurl="@Url.Action("Validate", "Home")">
+            @{
+                var counter = 0;
+            }
+                @for(int i = 0; i < 9; i++)
+                    {
+                    <tr>
+                        @for (int j = 0; j < 9; j++)
+                        {
+                            <td>
+                                @{
+                                    var given = Model[i, j] == 0 ? null : Model[i, j].ToString();
+                                    var readOnlyAttribute = Model[i, j] == 0 ? null : "readOnly";
+                                }
+                                <input type="text" value="@Html.Encode(given)" @readOnlyAttribute placeholder="." maxlength="1" pattern="[1-9]" data-seq="@counter" />
+                                @{
+                                    counter++;
+                                }
+                            </td>
+
+
+                                    }
+                    </tr>
+            }
+        </table>
+
+        <div class="btn-new-game">
+            <a class="btn btn-primary" href="@Url.Action("Play", "Home")" role="button">New game</a>
+        </div>
+        
+    </div>
+</div>
+
