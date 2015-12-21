@@ -1,5 +1,4 @@
 ﻿using Core;
-using Site.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,12 +30,13 @@ namespace Site.Controllers
 
         // I am forced to use a viewmodel (no anonymous objects) and post (where a get would be more appropriate) and a cast to int[] instead of byte[] here, 
         // just in order to make the parameter binding work. That's quite a lot of concessions to make.
-        [HttpPost]
-        public ActionResult Validate(PuzzleViewModel vm)
+        // http:.../Home/Validate?{%22values%22:[1,4,0,0,2,0,9,0,3,0,2,0,0,5,9,0,0,8,0,0,0,0,0,0,0,0,0,0,8,0,5,7,3,0,6,0,0,9,4,2,8,0,0,0,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,9,1,0,0,4,0,0,3,5,0,0,0,8,0,2]}
+        [HttpGet]
+        public ActionResult Validate(int[] values)
         {
-            byte[] data = vm.Values.Select(v => (byte)v).ToArray();
+            byte[] data = values.Select(v => (byte)v).ToArray();
             Puzzle p = new Puzzle(data);
-            return Json( new { valid = p.Validate() });
+            return Json( new { valid = p.Validate() }, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult About()

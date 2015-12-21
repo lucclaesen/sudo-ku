@@ -30,15 +30,20 @@ $(function () {
         var data = {
             values: getPuzzleData()
         };
-        data = JSON.stringify(data);
+
+        // The default model binder in MVC5 does not support json objects on the query string (which is the only suppported medium for handing the
+        // server data in a GET request. Hence, JSON works only with posts.
+        // data = JSON.stringify(data);
 
         // make a get call to validate, sending along the whole puzzle data
         $.ajax({
             url: validateActionUrl,
             data: data,
-            type: "POST", /* I wanted a get here, but mvc5 with it's default parameter binder does not handle JSon data well*/
-            dataType: "json",
-            contentType: 'application/json', /*this is crucial*/
+            type: "GET",
+            dataType: "json", // the datatype of the server response
+            // contentType: "application/x-www-form-urlencoded",  -- the default
+            // contentType: 'application/json', -- should always be used in conjunction with POST
+            traditional : true,
             success: function (json) {
                 // code that runs of no errors were encountered
                 $(".sudo-grid input").each(function () {
@@ -63,6 +68,28 @@ $(function () {
                 // code that executes in both success and error scenario's
             }
         });
+
+        //$.getJSON({
+        //    url: validateActionUrl,
+        //    data: data,
+        //    success: function (json) {
+        //        // code that runs of no errors were encountered
+        //        $(".sudo-grid input").each(function () {
+        //            // remove validation colors from all cells other than the one that just fired
+        //            $(this).removeClass("valid invalid");
+        //            if ($(this).data("seq") == $(inputElement).data("seq")) {
+        //                if (json.valid) {
+        //                    $(inputElement).addClass("valid");
+        //                    $(inputElement).prop("readonly", true);
+        //                }
+        //                else {
+        //                    $(inputElement).addClass("invalid");
+        //                }
+        //            }
+
+        //        })
+        //    }
+        //});
         
     });
 
