@@ -4,15 +4,22 @@ This repository tells the tale of a journey. In particular, of a journey of a cl
 
 I mainly report the tale to myself -- the code experiments on my local drive are becoming too numerous to be managable; hence the idea of using a public forum to single out a documented trajectory that goes from javascript naivity into hopefully somewhat more javascript wisdom. Eventual interest of others in this path is purely incidental.
 
-The thread in the contributions to this repo is a game of sudoku. The little application that will return in every sub folder of this repository generates a sudoku puzzles and validates input the user in solving it.
+The thread in the contributions to this repo is a game of sudoku: a small application that presents users with a sudoku challenge and invites them to complete the puzzle while validating their moves.
 
-How the sudo-ku application creates and validates puzzles will be constant throughout the different stages of this coding journey:
-- the most fundamental entity in this solution is a solver that represents a sudoku puzzle as a exact cover problem. It translates the problem space in terms of a doubly linked lists and runs Donald Knuth's beautifull Dancing Link algorithm (Algorithm-X). This is an efficient version of a brute force, constraint solving algorithm.
-- I implemented a random generator for solvable puzzles just like they did it for NintendoDS -- in fact, an approach that generates puzzles with a unique solution.
+The starting point of this journey is a setup which you will be familiar with if you have a background like me in one of the main statically typed, server oriented languages like .net. In stage-1, there's a working example of an implementation using ASP.NET MVC5 with a single javascript script file relying on nothing but JQuery.
 
-I won't say more about Sudoku's than this: it's quite immaterial to the intent of this repo.
+What I plan to do is systematically move the 'core' and it's code into scripts that execute in the browser. In the end, I want to have a SPA version of the game that runs in a browser as well as as a mobile and UWP app.
 
-The true value of the sudo-ku journey lies in the path between the way I would have made the application, say, two years ago and how (I hope) would do it in say two months time.
+I'm sure this journey will confront me with numerous challenges:
+- using git properly, to begin with
+- learning javascript properly
+- learning the DOM and how browsers provide a runtime for javascript
+- mastering client side templating
+- supporting disconnected scenario's
+- testing
+- code organisation: mimic classes, support modules, apply coding patterns
+- learning ES6 or typescript features
+- learning the nodejs development tools for building javascript applications outside of Visual Studio
+- addressing cross-browser compatibility issues
 
-In stage-1, I present a working puzzle game with all the puzzle generation and validation logic in an asp.net mvc application. When the play-page is requested, the web server populates the DOM with the challenge (the *givens* of the puzzle). In the browser, there's a script that captures user input to the puzzle and delegates it's validation to the web server by means of an ajax call.
-
+None of these challenges will be met by prematurely  referencing and using a library or framework such as Angular or Aurelia. I very well might do so on my next project; but I hope this journey will have provided me by then with enough context to use them wisely.

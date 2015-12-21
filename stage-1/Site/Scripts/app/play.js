@@ -36,7 +36,7 @@ $(function () {
         $.ajax({
             url: validateActionUrl,
             data: data,
-            type: "POST",
+            type: "POST", /* I wanted a get here, but mvc5 with it's default parameter binder does not handle JSon data well*/
             dataType: "json",
             contentType: 'application/json', /*this is crucial*/
             success: function (json) {
